@@ -2,13 +2,10 @@ package burakogretici.hrmsproject.business.concretes;
 
 import java.util.List;
 
+import burakogretici.hrmsproject.core.utilities.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import burakogretici.hrmsproject.business.conctants.Messages;
-import burakogretici.hrmsproject.core.utilities.results.DataResult;
-import burakogretici.hrmsproject.core.utilities.results.Result;
-import burakogretici.hrmsproject.core.utilities.results.SuccessDataResult;
-import burakogretici.hrmsproject.core.utilities.results.SuccessResult;
 
 import burakogretici.hrmsproject.business.abstracts.PositionService;
 import burakogretici.hrmsproject.dataAccess.abstracts.PositionDao;
@@ -32,8 +29,17 @@ public class PositionManager implements PositionService {
 
     @Override
     public Result add(Position position) {
-        this.positionDao.save(position);
-        return new SuccessResult(Messages.positionAdded);
-
+        if(positionNameExits(position.getName()).isSuccess()){
+            this.positionDao.save(position);
+            return new SuccessResult(Messages.positionAdded);
+        }
+        return new ErrorResult(Messages.positionNameAlreadyRegistered);
+    }
+    private Result positionNameExits(String positionName) {
+        var result = positionDao.findAll().stream().anyMatch(p -> p.getName().equals(positionName));
+        if (result) {
+            return new ErrorResult(Messages.positionNameAlreadyRegistered);
+        }
+        return new SuccessResult();
     }
 }

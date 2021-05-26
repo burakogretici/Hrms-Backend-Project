@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import burakogretici.hrmsproject.business.abstracts.PositionService;
 import burakogretici.hrmsproject.entities.concretes.Position;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("api/positions")
 public class PositionsController {
@@ -31,7 +33,7 @@ public class PositionsController {
         return this.positionService.getAll();
     }
     @PostMapping("/add")
-    public Result add(@RequestBody Position position) {
+    public Result add(@Valid @RequestBody Position position)  {
         return this.positionService.add(position);
     }
 }

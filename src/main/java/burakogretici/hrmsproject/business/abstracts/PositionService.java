@@ -9,5 +9,6 @@ import burakogretici.hrmsproject.core.utilities.results.Result;
 public interface PositionService {
 
     DataResult<List<Position>> getAll();
+
     Result add(Position position);
 }

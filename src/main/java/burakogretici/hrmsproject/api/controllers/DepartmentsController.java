@@ -29,7 +29,7 @@ public class DepartmentsController {
     @GetMapping("/getall")
     public DataResult<List<Department>> getAll() {
 
-        return this.departmentService.getAll();
+        return  this.departmentService.getAll();
     }
 
     @PostMapping("/add")

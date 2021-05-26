@@ -13,4 +13,17 @@ public class Messages {
 
     public static String jobSeekerAdded = "JobSeeker added";
     public static String jobSeekerListed = "JobSeekers listed";
+
+    public static String verificationFailed = "Verification failed, Please try again";
+
+    public static String mailAlreadyRegistered = "Mail already registered.";
+    public static String nationalityIdAlreadyRegistered = "Nationality id already registered.";
+    public static String positionNameAlreadyRegistered = "Position name already exits";
+    public static String doNotMatch = "The website and your e-mail do not match";
+
+    public static String userAdded = "User added";
+    public static String userListed = "Users listed";
+
+    {
+    }
 }

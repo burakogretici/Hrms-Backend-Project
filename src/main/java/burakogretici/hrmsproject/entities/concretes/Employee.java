@@ -24,6 +24,7 @@ public class Employee {
     @Column(name="user_id")
     private  int userId;
 
+
     @Column(name="department_id")
     private int departmentId;
 

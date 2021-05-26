@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @Entity
@@ -18,6 +19,7 @@ public class Position {
     @Column(name="id")
     private int id;
 
+    @NotEmpty(message="name cannot be empty")
     @Column(name="name")
     private String name;
 

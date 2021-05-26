@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import burakogretici.hrmsproject.business.abstracts.JobSeekerService;
 import burakogretici.hrmsproject.entities.concretes.JobSeeker;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("api/jobSeekers")
 public class JobsSeekersController {
@@ -28,11 +30,12 @@ public class JobsSeekersController {
 
     @GetMapping("/getall")
     public DataResult<List<JobSeeker>> getAll() {
+
         return this.jobSeekerService.getAll();
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody JobSeeker jobSeeker) {
+    public Result add(@Valid @RequestBody JobSeeker jobSeeker) {
         return this.jobSeekerService.add(jobSeeker);
     }
 }
