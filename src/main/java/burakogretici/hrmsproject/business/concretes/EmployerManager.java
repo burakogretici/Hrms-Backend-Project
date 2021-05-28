@@ -43,16 +43,18 @@ public class EmployerManager implements EmployerService {
         if (result) {
             return new ErrorResult(Messages.mailAlreadyRegistered);
         }
-        return new SuccessResult();
+        return null;
     }
 
     private Result doNotMach(Employer employer) {
         String email = employer.getEmail();
-        String[] emailSplit = email.split("@");
-        if(!emailSplit[1].equals(employer.getWebSite())) {
-            return new ErrorResult(Messages.doNotMatch);
+        String webSite = employer.getWebSite();
+
+        String domain = webSite.split("www.")[1];
+        if (domain.equals(email.split("@")[1])) {
+            return new SuccessResult();
         }
-        return new SuccessResult();
+        return new ErrorResult();
     }
 }
 

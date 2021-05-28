@@ -2,7 +2,7 @@ package burakogretici.hrmsproject.business.abstracts;
 
 import burakogretici.hrmsproject.core.utilities.results.DataResult;
 import burakogretici.hrmsproject.core.utilities.results.Result;
-import burakogretici.hrmsproject.entities.concretes.User;
+import burakogretici.hrmsproject.core.entities.concretes.User;
 
 import java.util.List;
 

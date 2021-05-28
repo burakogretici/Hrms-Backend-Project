@@ -23,6 +23,8 @@ public class Messages {
 
     public static String userAdded = "User added";
     public static String userListed = "Users listed";
+    public static String userRegistered = "User registered";
+    public static String userVerified = "Has been verified";
 
     {
     }

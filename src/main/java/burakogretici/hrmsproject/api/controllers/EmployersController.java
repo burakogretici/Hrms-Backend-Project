@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import burakogretici.hrmsproject.business.abstracts.EmployerService;
 import burakogretici.hrmsproject.entities.concretes.Employer;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("api/employers")
 public class EmployersController {
@@ -33,7 +35,7 @@ public class EmployersController {
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody Employer employer) {
+    public Result add(@Valid @RequestBody Employer employer) {
         return this.employerService.add(employer);
     }
 }

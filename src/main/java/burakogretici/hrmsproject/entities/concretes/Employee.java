@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = false)
-@Table(name="Employees")
+@Table(name="employees")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Employee {
@@ -23,7 +23,6 @@ public class Employee {
     @GeneratedValue
     @Column(name="user_id")
     private  int userId;
-
 
     @Column(name="department_id")
     private int departmentId;

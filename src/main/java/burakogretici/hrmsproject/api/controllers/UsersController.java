@@ -3,7 +3,7 @@ package burakogretici.hrmsproject.api.controllers;
 import burakogretici.hrmsproject.business.abstracts.UserService;
 import burakogretici.hrmsproject.core.utilities.results.DataResult;
 import burakogretici.hrmsproject.core.utilities.results.Result;
-import burakogretici.hrmsproject.entities.concretes.User;
+import burakogretici.hrmsproject.core.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

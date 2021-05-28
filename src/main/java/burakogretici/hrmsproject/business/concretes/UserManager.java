@@ -7,7 +7,7 @@ import burakogretici.hrmsproject.core.utilities.results.Result;
 import burakogretici.hrmsproject.core.utilities.results.SuccessDataResult;
 import burakogretici.hrmsproject.core.utilities.results.SuccessResult;
 import burakogretici.hrmsproject.dataAccess.abstracts.UserDao;
-import burakogretici.hrmsproject.entities.concretes.User;
+import burakogretici.hrmsproject.core.entities.concretes.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

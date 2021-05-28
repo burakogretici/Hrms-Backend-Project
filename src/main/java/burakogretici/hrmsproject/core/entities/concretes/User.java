@@ -1,4 +1,4 @@
-package burakogretici.hrmsproject.entities.concretes;
+package burakogretici.hrmsproject.core.entities.concretes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

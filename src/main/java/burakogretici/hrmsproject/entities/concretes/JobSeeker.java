@@ -1,12 +1,12 @@
 package burakogretici.hrmsproject.entities.concretes;
 
+import burakogretici.hrmsproject.core.entities.concretes.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @EqualsAndHashCode(callSuper = false)
@@ -14,8 +14,8 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Job_Sekers")
-public class JobSeeker extends User{
+@Table(name="job_sekers")
+public class JobSeeker extends User {
 
     @NotEmpty(message = "First name cannot be empty")
     @Column(name="first_name")
