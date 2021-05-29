@@ -1,12 +1,15 @@
 package burakogretici.hrmsproject.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -29,27 +32,39 @@ public class JobAdvertisement {
     //@Column(name="position_id")
     //private int positionId;
 
+    //@NotEmpty(message = " City cannot be empty")
+    //@Column(name="city_id")
+    //private integer cityId;
+
     @NotEmpty(message = "Description cannot be empty")
     @Column(name="description")
     private String description;
 
-    @NotEmpty(message = " City cannot be empty")
-    @Column(name="city")
-    private String city;
+    @NotEmpty(message = "Min salary  cannot be empty")
+    @Column(name="min_salary")
+    private String minSalary;
 
-    @NotEmpty(message = "Salary  cannot be empty")
-    @Column(name="salary")
-    private String salary;
+    @NotEmpty(message = "Max salary  cannot be empty")
+    @Column(name="max_salary")
+    private String maxSalary;
 
     @NotEmpty(message = " Quantity cannot be empty")
     @Column(name="request_quantity")
     private String quantity;
 
-    @NotEmpty(message = "Deadline cannot be empty")
-    @Column(name="application_deadline")
-    private Date deadline;
 
+    @Column(name="creation_date")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate creationDate;
 
+    //@NotEmpty(message = "Deadline cannot be empty")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate deadline;
+
+    @Column(name = "is_active")
+    private boolean isActive;
+
+    //Join transaction
     @ManyToOne()
     @JoinColumn(name = "position_id")
     private Position position;
@@ -58,5 +73,7 @@ public class JobAdvertisement {
     @JoinColumn(name = "employer_id")
     private Employer employer;
 
-
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
 }

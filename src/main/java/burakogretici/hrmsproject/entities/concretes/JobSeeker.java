@@ -1,6 +1,7 @@
 package burakogretici.hrmsproject.entities.concretes;
 
 import burakogretici.hrmsproject.core.entities.concretes.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="job_sekers")
+@Table(name="job_seekers")
 public class JobSeeker extends User {
 
     @NotEmpty(message = "First name cannot be empty")
@@ -30,6 +31,7 @@ public class JobSeeker extends User {
     private String nationalityId;
 
     @NotEmpty(message = " Date or Birth cannot be empty")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name="date_of_birth")
     private String dateOfBirth;
 

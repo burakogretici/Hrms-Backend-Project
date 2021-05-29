@@ -26,6 +26,9 @@ public class Messages {
     public static String userRegistered = "User registered";
     public static String userVerified = "Has been verified";
 
+    public static String jobPostingAdded = "Job posting added";
+    public static String jobPostingsListed = "Job postings listed";
+
     {
     }
 }

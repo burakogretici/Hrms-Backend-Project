@@ -10,8 +10,7 @@ import java.util.List;
 
 public interface JobAdvertisementService {
     Result add(JobAdvertisement jobAdvertisement);
+
     DataResult<List<JobAdvertisement>> getAll();
 
-    DataResult<JobAdvertisementDto> getByAllRelaseDate(LocalDate date);
-    DataResult<JobAdvertisement> getByAllByEmployerId(int employerId);
 }

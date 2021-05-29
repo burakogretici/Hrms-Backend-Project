@@ -34,4 +34,7 @@ public class Employer extends User {
     @Column(name="phone")
     private String phone;
 
+    @OneToMany(mappedBy = "employer")
+    private List<JobAdvertisement> jobAdvertisements;
+
 }

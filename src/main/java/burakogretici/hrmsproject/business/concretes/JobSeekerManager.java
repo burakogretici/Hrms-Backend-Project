@@ -37,11 +37,14 @@ public class JobSeekerManager implements JobSeekerService {
         Result result = BusinessRules.run(nationalityIdExits(jobSeeker.getNationalityId()), emailExits(jobSeeker.getEmail()));
         if (!userCheckService.CheckIfRealPerson(jobSeeker)) {
             return new ErrorResult(Messages.verificationFailed);
-        } else if (!result.equals(null)) {
+
+        } else if (result != null) {
             return result;
         }
+
         this.jobSeekerDao.save(jobSeeker);
         return new SuccessResult(Messages.jobSeekerAdded);
+
     }
 
     private Result nationalityIdExits(String nationalityId) {
@@ -61,10 +64,3 @@ public class JobSeekerManager implements JobSeekerService {
     }
 }
 
- /* if (!userCheckService.CheckIfRealPerson(jobSeeker)) {
-          return new ErrorDataResult<JobSeeker>(Messages.verificationFailed);
-        }else if (!nationalityIdExits(jobSeeker.getNationalityId()).isSuccess()){
-        return new ErrorResult(Messages.nationalityIdAlreadyRegistered);
-        }else if (!emailExits(jobSeeker.getEmail()).isSuccess()){
-        return new ErrorResult(Messages.mailAlreadyRegistered);
-        }*/

@@ -25,7 +25,7 @@ public class JobSeekerForRegisterDto implements Dto {
     private String nationalityId;
 
     @Past
-    private LocalDateTime birthDate;
+    private LocalDateTime date_of_birth;
 
     @NotEmpty(message = "Email cannot be empty")
     @Email

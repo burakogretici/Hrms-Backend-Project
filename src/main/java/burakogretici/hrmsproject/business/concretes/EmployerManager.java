@@ -30,8 +30,8 @@ public class EmployerManager implements EmployerService {
 
     @Override
     public Result add(Employer employer) {
-        Result result = BusinessRules.run(emailExits(employer.getEmail()),doNotMach(employer));
-        if (!result.equals(null)) {
+        Result result = BusinessRules.run(emailExits(employer.getEmail()), doNotMach(employer));
+        if (result != null) {
             return result;
         }
         this.employerDao.save(employer);
@@ -43,7 +43,7 @@ public class EmployerManager implements EmployerService {
         if (result) {
             return new ErrorResult(Messages.mailAlreadyRegistered);
         }
-        return null;
+        return new SuccessResult();
     }
 
     private Result doNotMach(Employer employer) {
@@ -54,7 +54,8 @@ public class EmployerManager implements EmployerService {
         if (domain.equals(email.split("@")[1])) {
             return new SuccessResult();
         }
-        return new ErrorResult();
+        return new ErrorResult(Messages.doNotMatch);
     }
 }
 
+/*emailExits(employer.getEmail()).isSuccess()*/
