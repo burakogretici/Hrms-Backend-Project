@@ -8,6 +8,7 @@ import burakogretici.hrmsproject.core.utilities.results.SuccessDataResult;
 import burakogretici.hrmsproject.core.utilities.results.SuccessResult;
 import burakogretici.hrmsproject.dataAccess.abstracts.JobAdvertisementDao;
 import burakogretici.hrmsproject.entities.concretes.JobAdvertisement;
+import burakogretici.hrmsproject.entities.dtos.JobAdvertisementDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,20 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     @Override
     public DataResult<List<JobAdvertisement>> getAll() {
         return new SuccessDataResult<>(this.jobAdvertisementDao.findAll(), Messages.jobPostingsListed);
+    }
+
+    @Override
+    public DataResult<List<JobAdvertisementDto>> getAllByIsActiveAndEmployer_CompanyName(boolean isActive, String companyName) {
+         List<JobAdvertisementDto> jobAdvertisementsDtos = jobAdvertisementDao.findAllByIsActiveAndEmployer_CompanyName(isActive, companyName);
+
+        return new SuccessDataResult<List<JobAdvertisementDto>>(jobAdvertisementsDtos);
+    }
+
+    @Override
+    public DataResult<List<JobAdvertisementDto>> getAllByIsActive(boolean isActive) {
+        List<JobAdvertisementDto> jobAdvertisementsDtos = jobAdvertisementDao.findAllByIsActive(isActive);
+
+        return new SuccessDataResult<List<JobAdvertisementDto>>(jobAdvertisementsDtos);
     }
 
 }

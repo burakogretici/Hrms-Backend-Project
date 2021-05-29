@@ -3,12 +3,16 @@ package burakogretici.hrmsproject.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -16,14 +20,14 @@ import java.util.Date;
 
 @Data
 @Entity
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
-@Table(name="job_postings")
+@Table(name = "job_postings")
 public class JobAdvertisement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
     //@NotEmpty(message = "Employer id cannot be empty")
@@ -39,28 +43,28 @@ public class JobAdvertisement {
     //private integer cityId;
 
     @NotEmpty(message = "Description cannot be empty")
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
     @NotEmpty(message = "Min salary  cannot be empty")
-    @Column(name="min_salary")
+    @Column(name = "min_salary")
     private String minSalary;
 
     @NotEmpty(message = "Max salary  cannot be empty")
-    @Column(name="max_salary")
+    @Column(name = "max_salary")
     private String maxSalary;
 
     @NotEmpty(message = " Quantity cannot be empty")
-    @Column(name="request_quantity")
+    @Column(name = "request_quantity")
     private int quantity;
 
     @CreationTimestamp
-    @Column(name="creation_date")
+    @Column(name = "creation_date")
     private Date creationDate;
 
     @NotEmpty(message = "Deadline cannot be empty")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name="application_deadline")
+    @Column(name = "application_deadline")
     private Date deadline;
 
     @Column(name = "is_active")
@@ -78,4 +82,19 @@ public class JobAdvertisement {
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
+
+    @Builder
+    public JobAdvertisement(Employer employer, Position position, City city,
+                            String description, String minSalary,
+                            String maxSalary, @Positive int quantity,
+                            @Future Date deadline) {
+        this.employer = employer;
+        this.position = position;
+        this.city = city;
+        this.description = description;
+        this.minSalary = minSalary;
+        this.maxSalary = maxSalary;
+        this.quantity = quantity;
+        this.deadline = deadline;
+    }
 }

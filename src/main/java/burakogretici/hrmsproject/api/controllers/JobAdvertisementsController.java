@@ -4,7 +4,9 @@ import burakogretici.hrmsproject.business.abstracts.JobAdvertisementService;
 import burakogretici.hrmsproject.core.utilities.results.DataResult;
 import burakogretici.hrmsproject.core.utilities.results.Result;
 import burakogretici.hrmsproject.entities.concretes.JobAdvertisement;
+import burakogretici.hrmsproject.entities.dtos.JobAdvertisementDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class JobAdvertisementsController {
     }
 
     @GetMapping("/getall")
-    public DataResult<List<JobAdvertisement>> getAll(){
+    public DataResult<List<JobAdvertisement>> getAll() {
         return this.jobAdvertisementService.getAll();
 
     }
@@ -30,4 +32,15 @@ public class JobAdvertisementsController {
         return this.jobAdvertisementService.add(jobAdvertisement);
     }
 
+    @GetMapping("/getall/byisActiveAndEmployerCompanyname")
+    public DataResult<List<JobAdvertisementDto>> getAllByIsActiveAndEmployer_CompanyName(@RequestParam boolean isActive, @RequestParam String companyName) {
+        return this.jobAdvertisementService.getAllByIsActiveAndEmployer_CompanyName(isActive, companyName);
+
+    }
+
+    @GetMapping("/getall/byisActive")
+    public DataResult<List<JobAdvertisementDto>> getAllByIsActive(@RequestParam boolean isActive) {
+        return this.jobAdvertisementService.getAllByIsActive(isActive);
+
+    }
 }

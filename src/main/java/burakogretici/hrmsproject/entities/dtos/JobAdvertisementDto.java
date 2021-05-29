@@ -1,19 +1,20 @@
 package burakogretici.hrmsproject.entities.dtos;
 
 import burakogretici.hrmsproject.core.entities.abstracts.Dto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
-import java.time.LocalDate;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class JobAdvertisementDto implements Dto {
 
     @NotEmpty(message = "Company name cannot be empty")
@@ -23,11 +24,23 @@ public class JobAdvertisementDto implements Dto {
     private String positionName;
 
     @NotEmpty(message = " Quantity cannot be empty")
-    private String quantity;
+    private int quantity;
 
-    @Past
-    private LocalDate releaseDate;
+    @CreationTimestamp
+    private Date releaseDate;
 
     @NotEmpty(message = "Deadline cannot be empty")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date deadline;
+
+    @Builder
+    public JobAdvertisementDto(String companyName,
+                               String positionName, @Positive int quantity,
+                               @Past Date releaseDate,@Future Date deadline) {
+        this.companyName = companyName;
+        this.positionName = positionName;
+        this.quantity = quantity;
+        this.releaseDate = releaseDate;
+        this.deadline = deadline;
+    }
 }
