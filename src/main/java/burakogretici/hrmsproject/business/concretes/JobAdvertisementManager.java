@@ -27,7 +27,6 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
     @Override
     public Result add(JobAdvertisement jobAdvertisement) {
-        jobAdvertisement.setCreationDate(LocalDate.now());
         this.jobAdvertisementDao.save(jobAdvertisement);
         return new SuccessResult(Messages.jobPostingAdded);
     }

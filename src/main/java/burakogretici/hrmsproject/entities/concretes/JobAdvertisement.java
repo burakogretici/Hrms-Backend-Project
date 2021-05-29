@@ -1,16 +1,18 @@
 package burakogretici.hrmsproject.entities.concretes;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.math.BigDecimal;
+
 import java.time.LocalDate;
 import java.util.Date;
+
 
 @Data
 @Entity
@@ -50,16 +52,16 @@ public class JobAdvertisement {
 
     @NotEmpty(message = " Quantity cannot be empty")
     @Column(name="request_quantity")
-    private String quantity;
+    private int quantity;
 
-
+    @CreationTimestamp
     @Column(name="creation_date")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate creationDate;
+    private Date creationDate;
 
-    //@NotEmpty(message = "Deadline cannot be empty")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate deadline;
+    @NotEmpty(message = "Deadline cannot be empty")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name="application_deadline")
+    private Date deadline;
 
     @Column(name = "is_active")
     private boolean isActive;
