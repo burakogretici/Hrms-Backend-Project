@@ -28,7 +28,8 @@ public class Messages {
 
     public static String jobPostingAdded = "Job posting added";
     public static String jobPostingsListed = "Job postings listed";
+    public static String  JobPostingNotFound ="Job postings not found";
+    public static String JobPostingUpdated ="Job posting updated";
 
-    {
-    }
 }
+
