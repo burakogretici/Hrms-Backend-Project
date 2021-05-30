@@ -14,13 +14,13 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
-import java.time.LocalDate;
+
 import java.util.Date;
 
 
 @Data
 @Entity
-//@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_postings")
 public class JobAdvertisement {
@@ -83,18 +83,4 @@ public class JobAdvertisement {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @Builder
-    public JobAdvertisement(Employer employer, Position position, City city,
-                            String description, String minSalary,
-                            String maxSalary, @Positive int quantity,
-                            @Future Date deadline) {
-        this.employer = employer;
-        this.position = position;
-        this.city = city;
-        this.description = description;
-        this.minSalary = minSalary;
-        this.maxSalary = maxSalary;
-        this.quantity = quantity;
-        this.deadline = deadline;
-    }
 }

@@ -13,6 +13,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class JobAdvertisementDto implements Dto {
@@ -33,14 +34,4 @@ public class JobAdvertisementDto implements Dto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date deadline;
 
-    @Builder
-    public JobAdvertisementDto(String companyName,
-                               String positionName, @Positive int quantity,
-                               @Past Date releaseDate,@Future Date deadline) {
-        this.companyName = companyName;
-        this.positionName = positionName;
-        this.quantity = quantity;
-        this.releaseDate = releaseDate;
-        this.deadline = deadline;
-    }
 }
