@@ -5,6 +5,8 @@ import burakogretici.hrmsproject.core.utilities.results.DataResult;
 import burakogretici.hrmsproject.core.utilities.results.Result;
 import burakogretici.hrmsproject.core.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,13 +25,17 @@ public class UsersController {
     }
 
     @GetMapping("/getall")
-    public DataResult<List<User>> getAll() {
+    public ResponseEntity<DataResult<List<User>>> getAll() {
+        var result = userService.getAll();
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+     return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return this.userService.getAll();
     }
 
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody User user) {
-        return this.userService.add(user);
+    public ResponseEntity<?> add(@Valid @RequestBody User user) {
+        return ResponseEntity.ok(this.userService.add(user));
     }
 }

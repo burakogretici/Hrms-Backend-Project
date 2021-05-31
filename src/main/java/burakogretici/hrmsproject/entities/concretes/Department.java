@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Department {
     @Column(name="id")
     private int id;
 
+    @NotEmpty(message = "Name cannot be empty")
     @Column(name="name")
     private String name;
 

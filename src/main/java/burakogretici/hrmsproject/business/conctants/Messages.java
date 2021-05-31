@@ -31,5 +31,8 @@ public class Messages {
     public static String  JobPostingNotFound ="Job postings not found";
     public static String JobPostingUpdated ="Job posting updated";
 
+    public static String verificationErrors = "Verification errors";
+
+    public static String departmentAlreadyExists = "Department already exists";
 }
 

@@ -70,6 +70,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
         return new SuccessDataResult<List<JobAdvertisementDto>>(jobAdvertisementDtos);
     }
+
     @Override
     public Result update(JobAdvertisement jobAdvertisement) {
         jobAdvertisementDao.save(jobAdvertisement);

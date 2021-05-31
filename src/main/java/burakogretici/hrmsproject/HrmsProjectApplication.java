@@ -23,4 +23,6 @@ public class HrmsProjectApplication {
                 .apis(RequestHandlerSelectors.basePackage("burakogretici.hrmsproject"))
                 .build();
     }
+
+
 }

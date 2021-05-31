@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Positive;
 import java.util.Date;
 
 @Data
