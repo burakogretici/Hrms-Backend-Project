@@ -1,31 +1,39 @@
 package burakogretici.hrmsproject.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
+
 @Data
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobAdvertisements"})
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "job_positions")
-public class Position {
+@Table(name = "foreign_languages")
+public class ForeignLanguage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @NotEmpty(message = "name cannot be empty")
-    @Column(name = "title")
-    private String name;
+    @NotEmpty(message = "Tongue cannot be empty")
+    @Column(name = "tongue")
+    private String tongue;
 
-    @OneToMany(mappedBy = "position")
-    private List<JobAdvertisement> jobAdvertisements;
+
+    @Min(1)
+    @Max(5)
+    @Column(name = "level")
+    private int level;
+
+    @OneToMany(mappedBy = "foreignLanguage")
+    private List<Cv> cv;
+
 }

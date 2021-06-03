@@ -1,5 +1,9 @@
 package burakogretici.hrmsproject.business.conctants;
 
+import burakogretici.hrmsproject.entities.concretes.Cv;
+
+import java.util.List;
+
 public class Messages {
 
     public static String departmentAdded = "Department added";
@@ -15,6 +19,7 @@ public class Messages {
     public static String jobSeekerListed = "JobSeekers listed";
 
     public static String verificationFailed = "Verification failed, Please try again";
+    public static String verificationErrors = "Verification errors";
 
     public static String mailAlreadyRegistered = "Mail already registered.";
     public static String nationalityIdAlreadyRegistered = "Nationality id already registered.";
@@ -31,8 +36,16 @@ public class Messages {
     public static String  JobPostingNotFound ="Job postings not found";
     public static String JobPostingUpdated ="Job posting updated";
 
-    public static String verificationErrors = "Verification errors";
 
     public static String departmentAlreadyExists = "Department already exists";
+
+    public static String educationAdded = "Education added";
+    public static String experienceAdded = "Experience added";
+    public static String cvAdded = "Cv added";
+    public static String talentAdded = "Talent added";
+    public static String foreignLanguageAdded = "Foreign language added";
+
+    public static String cvNotFound = "Cv not found";
+    public static String photoAdded = "Photo added";
 }
 
