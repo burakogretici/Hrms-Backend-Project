@@ -33,7 +33,7 @@ public class PhotosController {
 
     @PostMapping("/addandsave")
     public ResponseEntity<Result> addAndSave(@RequestParam int cvId, @RequestBody MultipartFile file) {
-        Result result = photoService.addAndSave(Photo.builder().cv((List<Cv>) Cv.builder().id(cvId).build()).build(), file);
+        Result result = photoService.addAndSave(Photo.builder().cv(Cv.builder().id(cvId).build()).build(), file);
 
         return ResponseEntity.ok(result);
     }

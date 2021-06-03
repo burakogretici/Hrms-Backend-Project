@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
@@ -21,10 +22,14 @@ public class Talent {
     @Column(name = "id")
     private int id;
 
+    @NotNull
+    @JoinColumn(name = "cv_id")
+    @ManyToOne
+    private Cv cv;
+
     @NotEmpty(message = "Technology cannot be empty")
     @Column(name = "technology")
     private String technology;
 
-    @OneToMany(mappedBy = "talent")
-    private List<Cv> cv;
+
 }

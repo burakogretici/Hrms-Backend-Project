@@ -1,11 +1,11 @@
 package burakogretici.hrmsproject.entities.concretes;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @Entity
@@ -26,30 +26,25 @@ public class Cv {
     @JoinColumn(name = "job_seeker_id")
     private JobSeeker jobSeeker;
 
+    @JsonIgnore()
+    @OneToMany(mappedBy = "cv")
+    private List<Education> educations;
 
-    @ManyToOne
-    @JoinColumn(name = "education_id")
-    private Education education;
+    @JsonIgnore()
+    @OneToMany(mappedBy = "cv")
+    private List<ForeignLanguage> foreignLanguages;
 
+    @JsonIgnore()
+    @OneToMany(mappedBy = "cv")
+    private List<Experience> experiences;
 
-    @ManyToOne
-    @JoinColumn(name = "foreign_language_id")
-    private ForeignLanguage foreignLanguage;
+    @JsonIgnore()
+    @OneToMany(mappedBy = "cv")
+    private List<Talent> talents;
 
-
-    @ManyToOne
-    @JoinColumn(name = "experience_id")
-    private Experience experience;
-
-
-    @ManyToOne
-    @JoinColumn(name = "talent_id")
-    private Talent talent;
-
-
-    @ManyToOne
-    @JoinColumn(name = "photo_id")
-    private Photo photo;
+    @JsonIgnore()
+    @OneToMany(mappedBy = "cv")
+    private List<Photo> photos;
 
     @Column(name = "github")
     private String github;

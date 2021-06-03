@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
@@ -23,6 +24,11 @@ public class ForeignLanguage {
     @Column(name = "id")
     private int id;
 
+    @NotNull
+    @JoinColumn(name = "cv_id")
+    @ManyToOne
+    private Cv cv;
+
     @NotEmpty(message = "Tongue cannot be empty")
     @Column(name = "tongue")
     private String tongue;
@@ -32,8 +38,5 @@ public class ForeignLanguage {
     @Max(5)
     @Column(name = "level")
     private int level;
-
-    @OneToMany(mappedBy = "foreignLanguage")
-    private List<Cv> cv;
 
 }

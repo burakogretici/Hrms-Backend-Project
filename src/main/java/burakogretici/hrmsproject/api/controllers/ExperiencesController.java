@@ -44,8 +44,8 @@ public class ExperiencesController {
     }
 
     @GetMapping("/getall/bycvid")
-    public ResponseEntity<DataResult<List<Experience>>> getAllByCv_Id(int jobSeekerCVId) {
-        DataResult<List<Experience>> result = experienceService.getAllByCv_Id(jobSeekerCVId);
+    public ResponseEntity<DataResult<List<Experience>>> getAllByCv_Id(int cvId) {
+        DataResult<List<Experience>> result = experienceService.getAllByCv_Id(cvId);
 
         return ResponseEntity.ok(result);
     }

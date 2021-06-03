@@ -1,10 +1,10 @@
 package burakogretici.hrmsproject.entities.concretes;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
@@ -24,8 +24,9 @@ public class Photo {
     private int id;
 
     @NotNull
-    @OneToMany(mappedBy = "photo")
-    private List<Cv> cv;
+    @JoinColumn(name = "cv_id")
+    @ManyToOne
+    private Cv cv;
 
 
     @NotEmpty

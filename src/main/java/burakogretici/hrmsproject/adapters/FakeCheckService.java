@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 public class FakeCheckService implements UserCheckService {
     @Override
     public boolean CheckIfRealPerson(JobSeeker jobSeeker) {
-        if (jobSeeker.getFirstName().equals("Burak") && jobSeeker.getLastName().equals("Öğretici") &&
-                jobSeeker.getNationalityId().equals("12345678911")  && jobSeeker.getDateOfBirth().equals("10-01-1998")){
+        if (jobSeeker.getFirstName().length() > 2 && jobSeeker.getLastName().length() >2 &&
+                jobSeeker.getNationalityId().length() < 12 ){
             return true;
         }
         return false;

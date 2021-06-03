@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = false)
@@ -28,8 +29,8 @@ public class JobSeeker extends User {
     @Column(name = "nationality_id")
     private String nationalityId;
 
-    @NotEmpty(message = " Date or Birth cannot be empty")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 

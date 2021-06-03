@@ -11,7 +11,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
@@ -24,6 +23,11 @@ public class Education {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
+    @NotNull
+    @JoinColumn(name = "cv_id")
+    @ManyToOne
+    private Cv cv;
 
     @NotEmpty(message = "School name cannot be empty")
     @Column(name = "school_name")
@@ -43,7 +47,5 @@ public class Education {
     @Column(name = "end_year")
     private Date endYear;
 
-    @OneToMany(mappedBy = "education")
-    private List<Cv> cv;
 
 }
