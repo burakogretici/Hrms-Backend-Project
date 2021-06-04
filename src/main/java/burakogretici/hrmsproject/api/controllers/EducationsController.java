@@ -31,32 +31,44 @@ public class EducationsController {
 
     @PostMapping("/add")
     public ResponseEntity<Result> add(@RequestBody @Valid Education education) {
-        Result result = educationService.add(education);
+        var result = educationService.add(education);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/getall")
     public ResponseEntity<DataResult<List<Education>>> getAll() {
 
-        DataResult<List<Education>> result = educationService.getAll();
-
-        return ResponseEntity.ok(result);
+        var result = educationService.getAll();
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/getall/bycvid")
     public ResponseEntity<DataResult<List<Education>>> getAllByJobSeekerCv_Id(int cvId) {
-        DataResult<List<Education>> result = educationService.getAllByCv_Id(cvId);
+        var result = educationService.getAllByCv_Id(cvId);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/getall/bycvidorderbyendyear")
     public ResponseEntity<DataResult<List<Education>>> getAllByCv_IdOrderByEndYear(@RequestParam int cvId, @RequestParam String direction) {
-        DataResult<List<Education>> result = educationService.getAllByCv_IdOrderByEndYear(cvId,direction);
+        var result = educationService.getAllByCv_IdOrderByEndYear(cvId, direction);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(result);
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException

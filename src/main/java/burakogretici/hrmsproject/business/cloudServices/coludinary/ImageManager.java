@@ -23,12 +23,8 @@ public class ImageManager implements ImageService {
     @Autowired
     public ImageManager(Environment environment) {
         this.environment = environment;
-        cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name",
-                environment.getProperty("cloudinary.cloud.name"),
-                "api_key",
-                environment.getProperty("cloudinary.api.key"),
-                "api_secret",
-                environment.getProperty("cloudinary.api.secret")));
+        cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", environment.getProperty("dg53ygg5f"),
+                                                        "api_key", environment.getProperty("199178955484794"), "api_secret", environment.getProperty("MwYkDgVx9a_MK_rKkFZvrVmKVlI")));
     }
 
     @Override

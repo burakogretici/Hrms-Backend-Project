@@ -31,22 +31,30 @@ public class ForeignLanquagesController {
 
     @PostMapping("/add")
     public ResponseEntity<Result> add(@RequestBody @Valid ForeignLanguage foreignLanguage) {
-        Result result = foreignLanguageService.add(foreignLanguage);
+        var result = foreignLanguageService.add(foreignLanguage);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(result);
     }
     @GetMapping("/getall")
     public ResponseEntity<DataResult<List<ForeignLanguage>>> getAll() {
-        DataResult<List<ForeignLanguage>> result = foreignLanguageService.getAll();
-
-        return ResponseEntity.ok(result);
+       var result = foreignLanguageService.getAll();
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/get/bycvid")
     public ResponseEntity<DataResult<List<ForeignLanguage>>> getAllByCV_Id(int cvId) {
-        DataResult<List<ForeignLanguage>> result = foreignLanguageService.getAllByCv_Id(cvId);
+        var result = foreignLanguageService.getAllByCv_Id(cvId);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(result);
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

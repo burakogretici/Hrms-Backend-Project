@@ -20,7 +20,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/cvs/talents")
-public class TalentsController  {
+public class TalentsController {
     private TalentService talentService;
 
     @Autowired
@@ -30,23 +30,34 @@ public class TalentsController  {
 
     @PostMapping("/add")
     public ResponseEntity<Result> add(@RequestBody @Valid Talent talent) {
-        Result result = talentService.add(talent);
+        var result = talentService.add(talent);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(result);
     }
+
     @GetMapping("/getall")
     public ResponseEntity<DataResult<List<Talent>>> getAll() {
-         DataResult<List<Talent>> result = talentService.getAll();
+        var result = talentService.getAll();
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/get/bycvid")
     public ResponseEntity<DataResult<List<Talent>>> getAllByCv_Id(int cvId) {
-        DataResult<List<Talent>> result = talentService.getAllByCv_Id(cvId);
+        var result = talentService.getAllByCv_Id(cvId);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(result);
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException

@@ -6,6 +6,7 @@ import burakogretici.hrmsproject.core.utilities.results.Result;
 import burakogretici.hrmsproject.entities.concretes.Cv;
 import burakogretici.hrmsproject.entities.concretes.Talent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,21 +26,27 @@ public class CvsController {
 
     @PostMapping("/add")
     public ResponseEntity<Result> add(@RequestBody @Valid Cv cv) {
-        Result result = cvService.add(cv);
-
-        return ResponseEntity.ok(result);
+        var result = cvService.add(cv);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
     @GetMapping("/getall")
     public ResponseEntity<DataResult<List<Cv>>> getAll() {
-        DataResult<List<Cv>> result = cvService.getAll();
-
-        return ResponseEntity.ok(result);
+        var result = cvService.getAll();
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/get/byjobseekercvid")
     public ResponseEntity<DataResult<List<Cv>>> getAllByCv_Id(int jobSeekerId) {
-        DataResult<List<Cv>> result = cvService.getByJobSeeker_Id(jobSeekerId);
-
-        return ResponseEntity.ok(result);
+        var result = cvService.getByJobSeeker_Id(jobSeekerId);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 }

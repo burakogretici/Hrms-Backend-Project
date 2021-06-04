@@ -33,28 +33,32 @@ public class PhotosController {
 
     @PostMapping("/addandsave")
     public ResponseEntity<Result> addAndSave(@RequestParam int cvId, @RequestBody MultipartFile file) {
-        Result result = photoService.addAndSave(Photo.builder().cv(Cv.builder().id(cvId).build()).build(), file);
-
-        return ResponseEntity.ok(result);
+        var result = photoService.addAndSave(Photo.builder().cv(Cv.builder().id(cvId).build()).build(), file);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/getall")
     public ResponseEntity<DataResult<List<Photo>>> getAll() {
-        DataResult<List<Photo>> result = photoService.getAll();
-
-        return ResponseEntity.ok(result);
+        var result = photoService.getAll();
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/add")
     public ResponseEntity<Result> add(@RequestBody Photo photo) {
-        Result result = photoService.add(photo);
+        var result = photoService.add(photo);
 
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/getall/bycvid")
     public ResponseEntity<DataResult<List<Photo>>> getAllByJobSeekerCV_Id(int cvId) {
-        final DataResult<List<Photo>> result = photoService.getAllByCv_Id(cvId);
+       var result = photoService.getAllByCv_Id(cvId);
 
         return ResponseEntity.ok(result);
     }

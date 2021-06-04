@@ -38,7 +38,7 @@ public class JobAdvertisementsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody JobAdvertisement jobAdvertisement) {
+    public ResponseEntity<Result> add(@RequestBody JobAdvertisement jobAdvertisement) {
         var result = jobAdvertisementService.add(jobAdvertisement);
         if (result.isSuccess()) {
             return ResponseEntity.ok(result);
