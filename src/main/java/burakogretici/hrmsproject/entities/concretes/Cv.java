@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"jobSeeker", "education", "foreignLanguage", "experience", "talent"})
+@ToString(exclude = {"jobSeeker", "foreignLanguage", "experience", "talent"})
 @EqualsAndHashCode
 @Table(name = "cvs")
 public class Cv {

@@ -45,7 +45,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
     @Override
     public DataResult<List<JobAdvertisement>> getAll() {
-        return new SuccessDataResult<>(this.jobAdvertisementDao.findAll(), Messages.jobPostingsListed);
+        return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(), Messages.jobPostingsListed);
     }
 
     @Override

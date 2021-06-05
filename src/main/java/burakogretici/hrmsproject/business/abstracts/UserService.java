@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface UserService {
     Result add(User user);
+
+    DataResult<User> getByMail(String mail);
+
     DataResult<List<User>> getAll();
 
 }

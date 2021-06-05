@@ -1,5 +1,6 @@
 package burakogretici.hrmsproject.business.conctants;
 
+import burakogretici.hrmsproject.core.entities.concretes.User;
 import burakogretici.hrmsproject.entities.concretes.Cv;
 
 import java.util.List;
@@ -11,12 +12,14 @@ public class Messages {
 
     public static String employerAdded = "Employer added";
     public static String employerListed = "Employers listed";
+    public static String employerRegistered = "Employer Registered";
 
     public static String positionAdded = "Position added";
     public static String positionListed = "Positions listed";
 
     public static String jobSeekerAdded = "JobSeeker added";
     public static String jobSeekerListed = "JobSeekers listed";
+    public static String jobSeekerRegistered = "JobSeeker Registered";
 
     public static String verificationFailed = "Verification failed, Please try again";
     public static String verificationErrors = "Verification errors";
@@ -30,12 +33,13 @@ public class Messages {
     public static String userListed = "Users listed";
     public static String userRegistered = "User registered";
     public static String userVerified = "Has been verified";
+    public static String userNotFound = "User not found";
+    public static String userLogin = "Login successful";
 
     public static String jobPostingAdded = "Job posting added";
     public static String jobPostingsListed = "Job postings listed";
-    public static String  JobPostingNotFound ="Job postings not found";
-    public static String JobPostingUpdated ="Job posting updated";
-
+    public static String JobPostingNotFound = "Job postings not found";
+    public static String JobPostingUpdated = "Job posting updated";
 
     public static String departmentAlreadyExists = "Department already exists";
 
@@ -47,5 +51,8 @@ public class Messages {
 
     public static String cvNotFound = "Cv not found";
     public static String photoAdded = "Photo added";
-}
 
+
+    public static String userAlreadyExists = "User already exists";
+    public static String passwordMatch = "The passwords you entered do not match";
+}

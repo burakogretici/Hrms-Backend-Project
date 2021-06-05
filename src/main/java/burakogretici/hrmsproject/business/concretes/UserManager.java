@@ -2,10 +2,7 @@ package burakogretici.hrmsproject.business.concretes;
 
 import burakogretici.hrmsproject.business.abstracts.UserService;
 import burakogretici.hrmsproject.business.conctants.Messages;
-import burakogretici.hrmsproject.core.utilities.results.DataResult;
-import burakogretici.hrmsproject.core.utilities.results.Result;
-import burakogretici.hrmsproject.core.utilities.results.SuccessDataResult;
-import burakogretici.hrmsproject.core.utilities.results.SuccessResult;
+import burakogretici.hrmsproject.core.utilities.results.*;
 import burakogretici.hrmsproject.dataAccess.abstracts.UserDao;
 import burakogretici.hrmsproject.core.entities.concretes.User;
 import org.springframework.stereotype.Service;
@@ -25,6 +22,15 @@ public class UserManager implements UserService {
     public Result add(User user) {
         userDao.save(user);
         return new SuccessResult(Messages.userAdded);
+    }
+
+    @Override
+    public DataResult<User> getByMail(String mail) {
+        var result = userDao.findByEmail(mail);
+        if (result.isEmpty()){
+        return new ErrorDataResult<User>(Messages.userNotFound);
+        }
+        return new SuccessDataResult<User>();
     }
 
     @Override

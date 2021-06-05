@@ -34,7 +34,7 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public Result add(JobSeeker jobSeeker) {
 
-        Result result = BusinessRules.run(nationalityIdExits(jobSeeker.getNationalityId()), emailExits(jobSeeker.getEmail()));
+        Result result = BusinessRules.run(nationalityIdExits(jobSeeker.getNationalityId()), emailExits(jobSeeker.getEmail()), passwordMatch(jobSeeker));
         if (!userCheckService.CheckIfRealPerson(jobSeeker)) {
             return new ErrorResult(Messages.verificationFailed);
 
@@ -61,6 +61,14 @@ public class JobSeekerManager implements JobSeekerService {
             return new ErrorResult(Messages.mailAlreadyRegistered);
         }
         return new SuccessResult();
+    }
+
+    private Result passwordMatch(JobSeeker jobSeeker) {
+        var result = jobSeeker.getPassword().equals(jobSeeker.getConfirmPassword());
+        if (result) {
+            return new SuccessResult();
+        }
+        return new ErrorResult(Messages.passwordMatch);
     }
 }
 

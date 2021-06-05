@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployerForRegisterDto implements Dto {
+public class EmployerForRegisterDto  implements Dto  {
 
     @NotEmpty(message = "Email cannot be empty")
     @Email

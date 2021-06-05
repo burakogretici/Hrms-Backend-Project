@@ -2,6 +2,8 @@ package burakogretici.hrmsproject.entities.concretes;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,10 +11,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
+
 
 
 import java.util.Date;
@@ -29,18 +29,6 @@ public class JobAdvertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
-    //@NotEmpty(message = "Employer id cannot be empty")
-    //@Column(name="employer_id")
-    //private int employerId;
-
-    //@NotEmpty(message = "Position id cannot be empty")
-    //@Column(name="position_id")
-    //private int positionId;
-
-    //@NotEmpty(message = " City cannot be empty")
-    //@Column(name="city_id")
-    //private integer cityId;
 
     @NotEmpty(message = "Description cannot be empty")
     @Column(name = "description")

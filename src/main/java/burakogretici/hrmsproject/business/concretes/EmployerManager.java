@@ -30,7 +30,7 @@ public class EmployerManager implements EmployerService {
 
     @Override
     public Result add(Employer employer) {
-        Result result = BusinessRules.run(emailExits(employer.getEmail()), doNotMach(employer));
+        Result result = BusinessRules.run(emailExits(employer.getEmail()), doNotMach(employer), passwordMatch(employer));
         if (result != null) {
             return result;
         }
@@ -56,6 +56,12 @@ public class EmployerManager implements EmployerService {
         }
         return new ErrorResult(Messages.doNotMatch);
     }
-}
 
-/*emailExits(employer.getEmail()).isSuccess()*/
+    private Result passwordMatch(Employer employer) {
+        var result = employer.getPassword().equals(employer.getConfirmPassword());
+        if (result) {
+            return new SuccessResult();
+        }
+        return new ErrorResult(Messages.passwordMatch);
+    }
+}

@@ -4,19 +4,19 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import burakogretici.hrmsproject.core.entities.concretes.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Data
+@SuperBuilder
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
 @Table(name="employers")
 public class Employer extends User {
@@ -36,5 +36,6 @@ public class Employer extends User {
 
     @OneToMany(mappedBy = "employer")
     private List<JobAdvertisement> jobAdvertisements;
+
 
 }

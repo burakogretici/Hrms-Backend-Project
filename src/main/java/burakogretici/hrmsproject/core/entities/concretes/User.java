@@ -1,8 +1,10 @@
 package burakogretici.hrmsproject.core.entities.concretes;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -12,6 +14,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="Users")
 public class User {

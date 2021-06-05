@@ -2,7 +2,9 @@ package burakogretici.hrmsproject.entities.concretes;
 
 import burakogretici.hrmsproject.core.entities.concretes.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -10,10 +12,11 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = false)
+@SuperBuilder
 @Data
 @Entity
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
 @Table(name = "job_seekers")
 public class JobSeeker extends User {
 
