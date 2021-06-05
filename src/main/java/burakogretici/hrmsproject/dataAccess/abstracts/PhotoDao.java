@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface PhotoDao extends JpaRepository<Photo, Integer> {
-    List<Photo> findAllByCv_Id(int cvId);
+    Photo getByCv_Id(int cvId);
 
 }

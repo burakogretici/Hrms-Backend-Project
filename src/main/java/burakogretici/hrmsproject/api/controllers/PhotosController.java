@@ -5,7 +5,6 @@ import burakogretici.hrmsproject.business.conctants.Messages;
 import burakogretici.hrmsproject.core.utilities.results.DataResult;
 import burakogretici.hrmsproject.core.utilities.results.ErrorDataResult;
 import burakogretici.hrmsproject.core.utilities.results.Result;
-import burakogretici.hrmsproject.entities.concretes.Cv;
 import burakogretici.hrmsproject.entities.concretes.Photo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,9 +31,9 @@ public class PhotosController {
         this.photoService = photoService;
     }
 
-    @PostMapping("/addandsave")
-    public ResponseEntity<Result> addAndSave(@RequestParam int cvId, @RequestBody MultipartFile file) {
-        var result = photoService.addAndSave(Photo.builder().cv(Cv.builder().id(cvId).build()).build(), file);
+    @PostMapping("/uploadImage")
+    public ResponseEntity<Result> add(@RequestParam int cvId, @RequestBody MultipartFile file) throws IOException {
+        var result = photoService.add(cvId, file);
         if (result.isSuccess()) {
             return ResponseEntity.ok(result);
         }
@@ -49,19 +49,16 @@ public class PhotosController {
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Result> add(@RequestBody Photo photo) {
-        var result = photoService.add(photo);
+    @GetMapping("/getbycvid")
+    public ResponseEntity<DataResult<Photo>> getByCv_Id(int cvId) {
+        var result = photoService.getByCv_Id(cvId);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/getall/bycvid")
-    public ResponseEntity<DataResult<List<Photo>>> getAllByJobSeekerCV_Id(int cvId) {
-       var result = photoService.getAllByCv_Id(cvId);
-
-        return ResponseEntity.ok(result);
-    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException

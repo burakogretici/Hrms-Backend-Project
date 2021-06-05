@@ -30,6 +30,6 @@ public class Photo {
 
 
     @NotEmpty
-    @Column(name = "url")
+    @Column(name = "url",length = 1024)
     private String url;
 }
