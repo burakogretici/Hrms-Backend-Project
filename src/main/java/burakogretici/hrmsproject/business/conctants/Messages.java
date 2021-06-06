@@ -51,8 +51,10 @@ public class Messages {
 
     public static String cvNotFound = "Cv not found";
     public static String photoAdded = "Photo added";
+    public static String photoListed = "Photo listed";
 
 
     public static String userAlreadyExists = "User already exists";
     public static String passwordMatch = "The passwords you entered do not match";
+
 }
