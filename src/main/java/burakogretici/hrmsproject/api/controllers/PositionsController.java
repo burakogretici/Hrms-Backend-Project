@@ -21,6 +21,7 @@ import burakogretici.hrmsproject.entities.concretes.Position;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/positions")
 public class PositionsController {
 

@@ -20,6 +20,7 @@ import burakogretici.hrmsproject.entities.concretes.Employer;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/employers")
 public class EmployersController {
 

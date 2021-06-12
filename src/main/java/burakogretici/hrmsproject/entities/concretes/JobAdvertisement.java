@@ -12,9 +12,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-
-
-
 import java.util.Date;
 
 
@@ -70,5 +67,13 @@ public class JobAdvertisement {
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
+
+    @ManyToOne()
+    @JoinColumn(name = "working_time_id")
+    private WorkingTime workingTime;
+
+    @ManyToOne
+    @JoinColumn(name = "way_of_working_id")
+    private WayOfWorking wayOfWorking;
 
 }

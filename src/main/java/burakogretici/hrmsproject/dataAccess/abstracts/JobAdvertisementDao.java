@@ -23,5 +23,6 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 
     @Query("SELECT new burakogretici.hrmsproject.entities.dtos.JobAdvertisementDto(e.companyName,p.name,j.quantity,j.creationDate,j.deadline) FROM JobAdvertisement j JOIN j.employer e JOIN j.position p WHERE j.isActive=:isActive order by j.creationDate asc" )
     List<JobAdvertisementDto> findAllByIsActiveOrderByCreationDateAsc(@Param("isActive") boolean isActive);
+
 }
 

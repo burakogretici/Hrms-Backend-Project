@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/jobAdvertisements")
 public class JobAdvertisementsController {
     private JobAdvertisementService jobAdvertisementService;
@@ -50,6 +51,15 @@ public class JobAdvertisementsController {
     @GetMapping("/getall/byisactiveandemployercompanyname")
     public ResponseEntity<DataResult<List<JobAdvertisementDto>>> getAllByIsActiveAndEmployer_CompanyName(@RequestParam boolean isActive, @RequestParam String companyName) {
         var result = jobAdvertisementService.getAllByIsActiveAndEmployer_CompanyName(isActive, companyName);
+        if (result.isSuccess()) {
+            return ResponseEntity.ok(result);
+        }
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/getbyid")
+    public ResponseEntity<DataResult<List<JobAdvertisement>>> getById(@RequestParam int jobAdvertId) {
+        var result = jobAdvertisementService.getById(jobAdvertId);
         if (result.isSuccess()) {
             return ResponseEntity.ok(result);
         }

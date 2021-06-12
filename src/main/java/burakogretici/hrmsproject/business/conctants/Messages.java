@@ -57,4 +57,11 @@ public class Messages {
     public static String userAlreadyExists = "User already exists";
     public static String passwordMatch = "The passwords you entered do not match";
 
+    public static String jobPostingNotFound = "Job posting not found";
+
+    public static String workingTimeAdded= "Working time added";
+    public static String workingTimeListed ="Working time listed";
+
+    public static String wayOfWorkingAdded= " Way of Working time added";
+    public static String wayOfWorkingListed ="Way of Working listed";
 }

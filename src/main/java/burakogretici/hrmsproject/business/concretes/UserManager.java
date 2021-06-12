@@ -38,6 +38,5 @@ public class UserManager implements UserService {
         return new SuccessDataResult<List<User>>(userDao.findAll(),Messages.userListed);
     }
 
-
 }
 
