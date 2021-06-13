@@ -2,7 +2,6 @@ package burakogretici.hrmsproject.business.concretes;
 
 import burakogretici.hrmsproject.business.abstracts.WayOfWorkingService;
 import burakogretici.hrmsproject.business.conctants.Messages;
-import burakogretici.hrmsproject.core.entities.concretes.User;
 import burakogretici.hrmsproject.core.utilities.results.*;
 import burakogretici.hrmsproject.dataAccess.abstracts.WayOfWorkingDao;
 import burakogretici.hrmsproject.entities.concretes.WayOfWorking;

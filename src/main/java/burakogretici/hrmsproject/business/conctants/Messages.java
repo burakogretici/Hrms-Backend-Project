@@ -64,4 +64,8 @@ public class Messages {
 
     public static String wayOfWorkingAdded= " Way of Working time added";
     public static String wayOfWorkingListed ="Way of Working listed";
+
+    public static String cityAdded="City added";
+    public static String cityListed ="City Listed";
+    public static String cityAlreadyExists="City already exists";
 }

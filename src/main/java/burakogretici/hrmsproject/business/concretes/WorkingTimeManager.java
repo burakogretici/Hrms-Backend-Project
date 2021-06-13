@@ -6,9 +6,7 @@ import burakogretici.hrmsproject.core.utilities.results.DataResult;
 import burakogretici.hrmsproject.core.utilities.results.Result;
 import burakogretici.hrmsproject.core.utilities.results.SuccessDataResult;
 import burakogretici.hrmsproject.core.utilities.results.SuccessResult;
-import burakogretici.hrmsproject.dataAccess.abstracts.WayOfWorkingDao;
 import burakogretici.hrmsproject.dataAccess.abstracts.WorkingTimeDao;
-import burakogretici.hrmsproject.entities.concretes.WayOfWorking;
 import burakogretici.hrmsproject.entities.concretes.WorkingTime;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +21,6 @@ public class WorkingTimeManager implements WorkingTimeService {
         super();
         this.workingTimeDao = workingTimeDao;
     }
-
-
-
 
     @Override
     public Result add(WorkingTime workingTime) {
