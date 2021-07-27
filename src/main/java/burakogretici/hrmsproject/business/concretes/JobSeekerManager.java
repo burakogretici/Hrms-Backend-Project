@@ -2,6 +2,7 @@ package burakogretici.hrmsproject.business.concretes;
 
 import java.util.List;
 
+import burakogretici.hrmsproject.business.abstracts.EmailActivationService;
 import burakogretici.hrmsproject.business.abstracts.UserCheckService;
 import burakogretici.hrmsproject.core.utilities.business.BusinessRules;
 import burakogretici.hrmsproject.core.utilities.results.*;
@@ -18,12 +19,14 @@ public class JobSeekerManager implements JobSeekerService {
 
     private JobSeekerDao jobSeekerDao;
     private UserCheckService userCheckService;
+    private EmailActivationService emailActivationService;
 
     @Autowired
-    public JobSeekerManager(JobSeekerDao jobSeekerDao, UserCheckService userCheckService) {
+    public JobSeekerManager(JobSeekerDao jobSeekerDao, UserCheckService userCheckService, EmailActivationService emailActivationService) {
         super();
         this.jobSeekerDao = jobSeekerDao;
         this.userCheckService = userCheckService;
+        this.emailActivationService = emailActivationService;
     }
 
     @Override
@@ -43,6 +46,7 @@ public class JobSeekerManager implements JobSeekerService {
         }
 
         this.jobSeekerDao.save(jobSeeker);
+        this.emailActivationService.createAndSendActivationCodeByMail(jobSeeker, jobSeeker.getEmail());
         return new SuccessResult(Messages.jobSeekerAdded);
 
     }

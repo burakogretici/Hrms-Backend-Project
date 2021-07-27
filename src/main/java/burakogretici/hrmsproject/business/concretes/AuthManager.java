@@ -19,12 +19,14 @@ public class AuthManager implements AuthService {
     private UserCheckService userCheckService;
     private EmployerService employerService;
     private JobSeekerService jobSeekerService;
+    private EmailActivationService emailActivationService;
 
-    public AuthManager(UserService userService, UserCheckService userCheckService, EmployerService employerService, JobSeekerService jobSeekerService) {
+    public AuthManager(UserService userService, UserCheckService userCheckService, EmployerService employerService, JobSeekerService jobSeekerService,EmailActivationService emailActivationService) {
         this.userService = userService;
         this.userCheckService = userCheckService;
         this.employerService = employerService;
         this.jobSeekerService = jobSeekerService;
+        this.emailActivationService = emailActivationService;
     }
 
     @Override
@@ -58,6 +60,7 @@ public class AuthManager implements AuthService {
                 .confirmPassword(jobSeekerForRegisterDto.getConfirmPassword())
                 .build();
         jobSeekerService.add(jobSeeker);
+        emailActivationService.createAndSendActivationCodeByMail(jobSeeker, jobSeeker.getEmail());
         return new SuccessDataResult<>(jobSeeker, Messages.jobSeekerRegistered);
     }
 

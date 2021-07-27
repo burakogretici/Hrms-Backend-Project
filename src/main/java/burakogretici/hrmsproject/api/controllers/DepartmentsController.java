@@ -22,6 +22,7 @@ import javax.validation.Valid;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/departments")
 public class DepartmentsController {
     private DepartmentService departmentService;

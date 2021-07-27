@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/cvs/talents")
 public class TalentsController {
     private TalentService talentService;

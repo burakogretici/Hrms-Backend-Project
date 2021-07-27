@@ -13,7 +13,7 @@ import java.util.List;
 
 @Data
 @SuperBuilder
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,5 +1,6 @@
 package burakogretici.hrmsproject.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","cv"})
 @Table(name = "foreign_languages")
 public class ForeignLanguage {
 
@@ -32,7 +34,6 @@ public class ForeignLanguage {
     @NotEmpty(message = "Tongue cannot be empty")
     @Column(name = "tongue")
     private String tongue;
-
 
     @Min(1)
     @Max(5)

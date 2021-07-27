@@ -1,7 +1,6 @@
 package burakogretici.hrmsproject.core.entities.concretes;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -38,6 +37,5 @@ public class User {
     @NotEmpty(message = "Password cannot be empyt !!!")
     @Column(name="confirm_password")
     private String confirmPassword;
-
 
 }

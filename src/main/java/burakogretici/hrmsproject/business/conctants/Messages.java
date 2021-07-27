@@ -2,6 +2,7 @@ package burakogretici.hrmsproject.business.conctants;
 
 import burakogretici.hrmsproject.core.entities.concretes.User;
 import burakogretici.hrmsproject.entities.concretes.Cv;
+import burakogretici.hrmsproject.entities.concretes.EmailActivation;
 
 import java.util.List;
 
@@ -13,6 +14,9 @@ public class Messages {
     public static String employerAdded = "Employer added";
     public static String employerListed = "Employers listed";
     public static String employerRegistered = "Employer Registered";
+    public static String employerUpdated = "Employer Updated";
+    public static String employerNotFound = "Employer not found";
+    public static String pendingUpdateApproval="Pending update approval";
 
     public static String positionAdded = "Position added";
     public static String positionListed = "Positions listed";
@@ -68,4 +72,17 @@ public class Messages {
     public static String cityAdded="City added";
     public static String cityListed ="City Listed";
     public static String cityAlreadyExists="City already exists";
+
+    public static String employeeVerificationNotFound="Employee verification not found";
+    public static String employeeVerificationVerified="Employee verification verified";
+    public static String employeeVerificationAdded="Employee verification added";
+
+    public static String emailActivationVerifyEmailTitle="Email activation verify email title";
+    public static String emailActivationVerifyEmailBody="Email activation verify email body";
+    public static String emailActivationCreatedAndSent="Email activation created and sent";
+    public static String emailActivationAdded ="Email activation added";
+    public static String emailNotVerified ="Email not verified";
+    public static String emailVerified ="Email verified";
+    public static String emailActivationUpdated="Email activation updated";
+    public static String emailActivationNotFound ="Email activation not found";
 }
