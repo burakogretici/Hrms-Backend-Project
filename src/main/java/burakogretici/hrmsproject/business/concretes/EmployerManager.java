@@ -25,15 +25,15 @@ public class EmployerManager implements EmployerService {
     private EmployerDao employerDao;
     private EmailActivationService emailActivationService;
     private EmployeeVerificationService employeeVerificationService;
-    private EmployerUpdateDao employerUpdateDao;
+
 
     @Autowired
-    public EmployerManager(EmployerDao employerDao, EmailActivationService emailActivationService, EmployeeVerificationService employeeVerificationService, EmployerUpdateDao employerUpdateDao) {
+    public EmployerManager(EmployerDao employerDao, EmailActivationService emailActivationService, EmployeeVerificationService employeeVerificationService) {
         super();
         this.employerDao = employerDao;
         this.emailActivationService = emailActivationService;
         this.employeeVerificationService = employeeVerificationService;
-        this.employerUpdateDao = employerUpdateDao;
+
     }
 
     @Override
@@ -54,75 +54,6 @@ public class EmployerManager implements EmployerService {
         return new SuccessResult(Messages.employerAdded);
     }
 
-    @Override
-    public Result update(Employer employer) {
-        employerDao.save(employer);
-        return new SuccessResult(Messages.employerUpdated);
-    }
-
-    @Override
-    public DataResult<Employer> getById(int id) {
-        Optional<Employer> employer = employerDao.findById(id);
-        return new SuccessDataResult<Employer>(Messages.employerListed);
-    }
-
-    @Override
-    public DataResult<EmployerUpdate> getLastUpdateByUserId(int employerId) {
-        List<EmployerUpdate> employerUpdates = employerUpdateDao.findAllByEmployer_IdOrderByUpdatedAtDesc(employerId);
-
-        if (employerUpdates.size() == 0)
-            return new ErrorDataResult<>(Messages.pendingUpdateApproval);
-
-        return new SuccessDataResult<EmployerUpdate>(employerUpdates.get(0));
-    }
-
-    @Override
-    public DataResult<List<EmployerUpdate>> getAllByIsApprovedAndIsDeleted(boolean isApproved, boolean isDeleted) {
-        List<EmployerUpdate> employerUpdates = employerUpdateDao.findAllByIsApprovedAndIsDeleted(isApproved, isDeleted);
-
-        return new SuccessDataResult<List<EmployerUpdate>>(employerUpdates);
-    }
-
-    @Override
-    public Result updateByUser(EmployerForUpdateDto employerForUpdateDto) {
-        Optional<Employer> employer = employerDao.findById(employerForUpdateDto.getId());
-        if (employer.isEmpty())
-            return new ErrorResult(Messages.employeeVerificationNotFound);
-
-        Result businessRulesResult = BusinessRules.run(passwordMatch(employer.get().getPassword(), employerForUpdateDto.getPassword()));
-        if (!businessRulesResult.isSuccess())
-            return businessRulesResult;
-
-        EmployerUpdate employerUpdate = EmployerUpdate.builder()
-                .employer(employer.get())
-                .companyName(employerForUpdateDto.getCompanyName())
-                .webSite(employerForUpdateDto.getWebsite())
-                .email(employerForUpdateDto.getEmail())
-                .phone(employerForUpdateDto.getPhone())
-                .build();
-        employerUpdateDao.save(employerUpdate);
-
-        return new SuccessResult(Messages.employerUpdated);
-    }
-
-    @Override
-    public Result verifyUpdate(int employerUpdateId) {
-        Optional<EmployerUpdate> employerUpdate = employerUpdateDao.findById(employerUpdateId);
-        if (employerUpdate.isEmpty())
-            return new ErrorResult(Messages.employerNotFound);
-        employerUpdate.get().setApproved(true);
-        employerUpdate.get().setDeleted(true);
-        employerUpdateDao.save(employerUpdate.get());
-
-        /*Employer employer = super.getById(employerUpdate.get().getEmployer().getId()).getData();
-        employer.setCompanyName(employerUpdate.get().getCompanyName());
-        employer.setWebSite(employerUpdate.get().getWebSite());
-        employer.setEmail(employerUpdate.get().getEmail());
-        employer.setPhone(employerUpdate.get().getPhone());
-        super.update(employer);*/
-
-        return new SuccessResult(Messages.employerUpdated);
-    }
 
     private Result emailExits(String email) {
         var result = employerDao.findAll().stream().anyMatch(e -> e.getEmail().equals(email));

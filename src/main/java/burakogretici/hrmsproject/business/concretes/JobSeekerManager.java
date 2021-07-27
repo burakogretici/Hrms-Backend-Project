@@ -6,6 +6,7 @@ import burakogretici.hrmsproject.business.abstracts.EmailActivationService;
 import burakogretici.hrmsproject.business.abstracts.UserCheckService;
 import burakogretici.hrmsproject.core.utilities.business.BusinessRules;
 import burakogretici.hrmsproject.core.utilities.results.*;
+import burakogretici.hrmsproject.dataAccess.abstracts.FavoriteJobAdvertDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import burakogretici.hrmsproject.business.conctants.Messages;
@@ -21,12 +22,14 @@ public class JobSeekerManager implements JobSeekerService {
     private UserCheckService userCheckService;
     private EmailActivationService emailActivationService;
 
+
     @Autowired
     public JobSeekerManager(JobSeekerDao jobSeekerDao, UserCheckService userCheckService, EmailActivationService emailActivationService) {
         super();
         this.jobSeekerDao = jobSeekerDao;
         this.userCheckService = userCheckService;
         this.emailActivationService = emailActivationService;
+
     }
 
     @Override

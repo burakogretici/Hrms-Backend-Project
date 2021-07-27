@@ -15,18 +15,6 @@ public interface EmployerService {
 
     Result add(Employer employer);
 
-    Result update(Employer employer);
-
     DataResult<List<Employer>> getAll();
-
-    DataResult<Employer> getById(int id);
-
-    DataResult<EmployerUpdate> getLastUpdateByUserId(int employerId);
-
-    DataResult<List<EmployerUpdate>> getAllByIsApprovedAndIsDeleted(boolean isApproved, boolean isDeleted);
-
-    Result updateByUser(EmployerForUpdateDto employerForUpdateDto);
-
-    Result verifyUpdate(int employerUpdateId);
 
 }
